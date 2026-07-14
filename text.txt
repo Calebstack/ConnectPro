@@ -1,0 +1,15 @@
+•Built and deployed a dedicated Provider Dashboard using PHP, ensuring providers have a separate interface from clients after login.
+•Fixed CSS loading issues by moving Google Fonts from @import to HTML head link tags, improving cross-browser compatibility.
+•Created uploads directory for profile image storage, resolving missing directory errors.
+•Updated login redirect logic to route providers to their dashboard and clients to theirs, enhancing user experience.
+•Independently delivered role-based navigation improvements, ensuring proper access control and user flow.
+•Implemented secure session-based authentication with role-based access control (admin, provider, client) using PHP.
+•Developed provider search and filtering functionality using PHP and MySQL, enabling clients to find services by category or keyword.
+•Created booking management system with status tracking (pending, approved, cancelled) using PHP and PDO.
+•Designed responsive dark theme UI with glass-morphism effects using CSS and Bootstrap framework.
+•Integrated Font Awesome icons for enhanced visual interface and user experience.
+•Built admin control panel for user and booking management with real-time statistics.
+•Implemented profile image upload and fallback system using PHP and UI Avatars API.
+•Optimized database queries with prepared statements to prevent SQL injection attacks.
+•Developed provider profile setup and editing functionality with form validation.
+•Created notification system for success and error messages using session flash messages.

@@ -1,0 +1,780 @@
+/* =====================================================
+    CONNECT PRO — PREMIUM DARK THEME
+    Custom CSS — Full Stylesheet
+    ===================================================== */
+
+/* ---- 1. CSS VARIABLES (DESIGN TOKENS) ---- */
+:root {
+    --primary:          #6366f1;
+    --primary-dark:     #4f46e5;
+    --primary-light:    #818cf8;
+    --primary-glow:     rgba(99, 102, 241, 0.20);
+
+    --secondary:        #06b6d4;
+    --secondary-glow:   rgba(6, 182, 212, 0.15);
+
+    --success:          #10b981;
+    --success-glow:     rgba(16, 185, 129, 0.15);
+    --warning:          #f59e0b;
+    --warning-glow:     rgba(245, 158, 11, 0.15);
+    --danger:           #ef4444;
+    --danger-glow:      rgba(239, 68, 68, 0.15);
+
+    /* Dark background system */
+    --bg-body:          #060b14;
+    --bg-surface:       #0d1525;
+    --bg-card:          rgba(255, 255, 255, 0.04);
+    --bg-card-hover:    rgba(255, 255, 255, 0.07);
+    --bg-input:         rgba(255, 255, 255, 0.03);
+
+    /* Border system */
+    --border:           rgba(255, 255, 255, 0.08);
+    --border-hover:     rgba(99, 102, 241, 0.35);
+    --border-indigo:    #6366f1;
+
+    /* Text system */
+    --text-white:       #ffffff;
+    --text-primary:     #f1f5f9;
+    --text-secondary:   #94a3b8;
+    --text-muted:       #64748b;
+
+    /* Typography */
+    --font:             'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Spacing / Radius */
+    --radius-sm:        8px;
+    --radius-md:        12px;
+    --radius-lg:        20px;
+    --radius-xl:        28px;
+    --radius-full:      9999px;
+
+    /* Shadows */
+    --shadow-sm:        0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md:        0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-lg:        0 16px 40px rgba(0, 0, 0, 0.5);
+    --shadow-glow:      0 0 30px rgba(99, 102, 241, 0.2);
+}
+
+/* =====================================================
+   3. GLOBAL RESET & BASE STYLES
+   ===================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font);
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.65;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background mesh gradient overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 110%, rgba(6, 182, 212, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font);
+    color: var(--text-white);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+img {
+    max-width: 100%;
+}
+
+hr {
+    border-color: var(--border) !important;
+    opacity: 1;
+}
+
+/* =====================================================
+   4. TYPOGRAPHY UTILITIES
+   ===================================================== */
+
+.font-weight-bold     { font-weight: 700 !important; }
+.font-weight-semibold { font-weight: 600 !important; }
+.font-weight-medium   { font-weight: 500 !important; }
+
+.text-white    { color: #ffffff !important; }
+.text-muted    { color: var(--text-muted) !important; }
+.text-indigo   { color: var(--primary-light) !important; }
+.text-primary  { color: var(--primary) !important; }
+.text-success  { color: var(--success) !important; }
+.text-warning  { color: var(--warning) !important; }
+.text-danger   { color: var(--danger) !important; }
+
+.leading-relaxed { line-height: 1.75 !important; }
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.max-width-600 { max-width: 600px; }
+
+/* =====================================================
+   5. BORDER UTILITIES
+   ===================================================== */
+
+.border-secondary { border-color: var(--border) !important; }
+.border-indigo    { border-color: var(--border-indigo) !important; }
+
+/* =====================================================
+   6. NAVIGATION BAR
+   ===================================================== */
+
+.navbar-custom {
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+    background: rgba(6, 11, 20, 0.80) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-custom.scrolled {
+    background: rgba(6, 11, 20, 0.96) !important;
+    box-shadow: var(--shadow-md);
+}
+
+/* Brand / Logo */
+.navbar-brand-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff !important;
+    letter-spacing: -0.03em;
+    text-decoration: none !important;
+    transition: opacity 0.2s ease;
+}
+
+.navbar-brand-custom:hover {
+    opacity: 0.85;
+}
+
+.navbar-brand-custom i {
+    color: var(--primary);
+    font-size: 1.3rem;
+}
+
+.navbar-brand-custom span {
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Nav Links */
+.nav-link-custom {
+    color: rgba(255, 255, 255, 0.65) !important;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.45rem 0.9rem !important;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom:focus {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* =====================================================
+   7. BUTTONS
+   ===================================================== */
+
+/* Primary gradient button */
+.btn-primary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #ffffff !important;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.65rem 1.4rem;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    box-shadow: 0 4px 16px var(--primary-glow);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none !important;
+}
+
+.btn-primary-custom::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45);
+    filter: brightness(1.1);
+}
+
+.btn-primary-custom:active {
+    transform: translateY(0);
+}
+
+/* Secondary ghost button */
+.btn-secondary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff !important;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 0.92rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.65rem 1.4rem;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    text-decoration: none !important;
+}
+
+.btn-secondary-custom:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Bootstrap override — danger */
+.btn-outline-danger {
+    color: var(--danger) !important;
+    border-color: var(--danger) !important;
+    font-family: var(--font);
+    font-weight: 600;
+    border-radius: var(--radius-full) !important;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-danger:hover {
+    background: var(--danger) !important;
+    color: #fff !important;
+}
+
+/* =====================================================
+   8. GLASS CARDS
+   ===================================================== */
+
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle top shine */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    pointer-events: none;
+}
+
+.glass-card:hover {
+    border-color: rgba(99, 102, 241, 0.22);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(99, 102, 241, 0.08);
+}
+
+/* =====================================================
+   9. HERO SECTION (index.php)
+   ===================================================== */
+
+.hero-section {
+    padding: 5.5rem 2rem 5rem;
+    text-align: center;
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.10) 0%,
+        rgba(6, 11, 20, 0.20) 50%,
+        rgba(6, 182, 212, 0.06) 100%
+    ) !important;
+    border: 1px solid rgba(99, 102, 241, 0.15) !important;
+    animation: fadeInUp 0.7s ease both;
+}
+
+/* Glowing orb background */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.14) 0%, transparent 70%);
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5.5vw, 3.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title span {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.75;
+    position: relative;
+    z-index: 1;
+}
+
+/* =====================================================
+   10. CATEGORY CARDS
+   ===================================================== */
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    gap: 0.9rem;
+}
+
+.category-card:hover {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.35);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px -8px rgba(99, 102, 241, 0.22);
+    color: #ffffff !important;
+}
+
+.category-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--primary-light);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.category-card:hover .category-icon {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: transparent;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* =====================================================
+   11. FORM ELEMENTS
+   ===================================================== */
+
+.form-label-custom {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.45rem;
+    letter-spacing: 0.01em;
+}
+
+.form-control-custom,
+.form-control-custom.form-control,
+.form-control-custom.form-select {
+    width: 100%;
+    background: var(--bg-input) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-md) !important;
+    color: #ffffff !important;
+    font-family: var(--font);
+    font-size: 0.93rem;
+    padding: 0.7rem 1rem !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.form-control-custom::placeholder {
+    color: var(--text-muted);
+}
+
+.form-control-custom:focus,
+.form-control-custom.form-control:focus,
+.form-control-custom.form-select:focus {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 4px var(--primary-glow) !important;
+    color: #ffffff !important;
+}
+
+.form-control-custom option {
+    background: #0d1525;
+    color: #ffffff;
+}
+
+textarea.form-control-custom {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Date/time input color fix for dark theme */
+input[type="date"].form-control-custom,
+input[type="time"].form-control-custom {
+    color-scheme: dark;
+}
+
+/* =====================================================
+   12. BADGES
+   ===================================================== */
+
+.badge {
+    font-family: var(--font);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: var(--radius-full) !important;
+}
+
+.bg-indigo-subtle {
+    background-color: rgba(99, 102, 241, 0.15) !important;
+}
+
+.text-indigo {
+    color: #a5b4fc !important;
+}
+
+/* Admin booking status badges */
+.badge-custom {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: capitalize;
+}
+
+.badge-pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-approved {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-cancelled {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Provider role badges */
+.badge.bg-secondary {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--text-secondary) !important;
+}
+
+/* =====================================================
+   13. TABLE OVERRIDES (for dark theme)
+   ===================================================== */
+
+.table-dark {
+    --bs-table-bg:              transparent !important;
+    --bs-table-border-color:    var(--border) !important;
+    --bs-table-striped-bg:      rgba(255,255,255,0.02) !important;
+    --bs-table-hover-bg:        rgba(99, 102, 241, 0.06) !important;
+    color: var(--text-primary) !important;
+}
+
+.table-dark thead th {
+    color: var(--text-muted) !important;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border) !important;
+    background: transparent !important;
+}
+
+.table-dark td {
+    padding: 1rem 1.2rem;
+    vertical-align: middle;
+    border-color: var(--border) !important;
+    color: var(--text-secondary) !important;
+}
+
+.table-dark tbody tr:hover td {
+    background: rgba(99, 102, 241, 0.04) !important;
+    color: var(--text-primary) !important;
+}
+
+/* =====================================================
+   14. ALERTS (success / error feedback)
+   ===================================================== */
+
+.alert {
+    font-family: var(--font);
+    font-weight: 500;
+    border-radius: var(--radius-md) !important;
+    font-size: 0.93rem;
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.12) !important;
+    color: #34d399 !important;
+    border-left: 4px solid var(--success) !important;
+    border-color: transparent !important;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.12) !important;
+    color: #f87171 !important;
+    border-left: 4px solid var(--danger) !important;
+    border-color: transparent !important;
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.12) !important;
+    color: #fbbf24 !important;
+    border-color: transparent !important;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(1);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* =====================================================
+   15. FOOTER
+   ===================================================== */
+
+footer {
+    background: #040810 !important;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0;
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+}
+
+footer .text-white {
+    color: #ffffff !important;
+}
+
+footer .text-muted {
+    color: var(--text-muted) !important;
+    font-size: 0.85rem;
+}
+
+footer a {
+    color: var(--text-muted) !important;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--primary-light) !important;
+}
+
+footer i.fa-brands {
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+footer a:hover i.fa-brands {
+    color: var(--primary-light) !important;
+    transform: translateY(-2px);
+}
+
+/* =====================================================
+   16. ANIMATIONS
+   ===================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Staggered section entrance */
+main > section,
+main > .row {
+    animation: fadeIn 0.5s ease both;
+}
+
+/* =====================================================
+   17. SCROLLBAR STYLING
+   ===================================================== */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.55);
+}
+
+/* =====================================================
+   18. NAVBAR SCROLL EFFECT (JS hook)
+   ===================================================== */
+
+/* =====================================================
+   19. RESPONSIVE TWEAKS
+   ===================================================== */
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 3.5rem 1.25rem 3rem;
+    }
+
+    .glass-card {
+        padding: 1.25rem;
+    }
+
+    .category-card {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .category-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 1.25rem;
+    }
+
+    .navbar-custom .navbar-collapse {
+        background: rgba(6, 11, 20, 0.97);
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        margin-top: 0.5rem;
+        border: 1px solid var(--border);
+    }
+}
+
+@media (max-width: 576px) {
+    h1 { font-size: 1.85rem !important; }
+    h2 { font-size: 1.5rem !important; }
+}
